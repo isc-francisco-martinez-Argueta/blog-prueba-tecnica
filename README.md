@@ -1,5 +1,5 @@
 
-<p align="center"><img src="/public/favicon.ico" width="400" alt="Laravel Logo"></p>
+<p align="center"><img src="/public/Diagra.png" width="400" alt="Laravel Logo"></p>
 
 ## Instalación del pryecto
 

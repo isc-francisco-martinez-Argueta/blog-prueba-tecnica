@@ -18,6 +18,6 @@
   php artisan migrate:fresh --seed
 
 
-
+## Credenciales para iniciar sesion
 email: usuario@gmail.com<br>
 password: usuario

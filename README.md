@@ -9,15 +9,15 @@
 
 
 ## Cofiguración
-- crear copia de .env.example:
+- crear copia de .env.example:<br>
   cp .env.example .env
 
 - Crear base de datos en mysql
 - Posteriormente agrgeamos las credenciales de la bd en la configuracion de punto .env
-- Corremos migraciones y seeder
+- Corremos migraciones y seeder: <br>
   php artisan migrate:fresh --seed
 
 
 
-email: usuario@gmail.com
+email: usuario@gmail.com<br>
 password: usuario

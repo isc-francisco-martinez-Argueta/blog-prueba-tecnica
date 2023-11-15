@@ -36,9 +36,9 @@ En postman: en headers ingresara Blog-API-Key con el valor que tenga API_KEY de 
     - vite: para la configuracion de las dependencias a utilizar
 
 ## Comentarios
-    como se trara de un blog decidi hacer una tabla que se llama posts, y es ahi donde se da de alta las entradas, en nuestro caso seria un post.
+    como se trara de un blog decidi hacer una tabla que se llama posts, y es ahi donde se da de <br> alta las entradas, en nuestro caso seria un post. <br>
     
-    hice por aparte los enpoints para consumir los diferente metodos existes, pero para el funcionamiento de las entradas en el sistema lo hice con livewire.
+    hice por aparte los enpoints para consumir los diferente metodos existes, pero para el <br> funcionamiento de las entradas en el sistema lo hice con livewire.
     
 
 ## Credenciales para iniciar sesion

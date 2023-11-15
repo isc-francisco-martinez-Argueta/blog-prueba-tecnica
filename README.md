@@ -24,7 +24,8 @@ en el .env encontrará :  API_KEY = el codigo en esta parte se puede utilizar un
 
 en dado caso que la api se utilizara en difentes proyectos, se puede realizar una tabla para <br>dar de alta los dominios y generarles una key randon para cada uno.<br>
 
-En postman: en headers ingresara Blog-API-Key con el valor que tenga API_KEY de la <br>configuración del env
+En postman: en headers ingresara Blog-API-Key con el valor que tenga API_KEY de la <br>
+configuración del env
 
 ## Recursos utilizados
     - php 8.1
@@ -36,9 +37,10 @@ En postman: en headers ingresara Blog-API-Key con el valor que tenga API_KEY de 
     - vite: para la configuracion de las dependencias a utilizar
 
 ## Comentarios
-    como se trara de un blog decidi hacer una tabla que se llama posts, y es ahi donde se da de alta las entradas, en nuestro caso seria un post.
-    
-    hice por aparte los enpoints para consumir los diferente metodos existes, pero para el funcionamiento de las entradas en el sistema lo hice con livewire.
+como se trara de un blog decidi hacer una tabla que se llama posts, y es ahi <br>
+donde se da de alta las entradas, en nuestro caso seria un post.    <br>
+hice por aparte los enpoints para consumir los diferente metodos existes, <br>
+pero para el funcionamiento de las entradas en el sistema lo hice con livewire.
     
 
 ## Credenciales para iniciar sesion

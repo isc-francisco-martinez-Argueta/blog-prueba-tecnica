@@ -42,10 +42,10 @@
                         <td>{{ \Illuminate\Support\Str::limit( $post->content, $limit = 70, $end = '...') }}</td>
                         <td>
                             <div class="btn-group mr-2" role="group" aria-label="First group">
-                                <a class="btn btn-light shadow p-2">
+                                <a class="btn btn-light shadow p-2" wire:click="show({{ $post->id}})">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a class="btn btn-warning shadow p-2">
+                                <a class="btn btn-warning shadow p-2" wire:click="edit({{ $post->id}})">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
                                 <button class="btn btn-danger shadow p-2" type="button" wire:click="$dispatch('delete', { postId: {{ $post->id}} })">
@@ -83,42 +83,9 @@
 
 
     <!-- Modal -->
-    <div wire:ignore.self class="modal fade" id="postModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header  ">
-                    <h1 class="modal-title fs-5" id="postModalLabel">Crear post</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form wire:submit="save">
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Titulo</label>
-                            <input type="text" class="form-control" wire:model="title" placeholder="Escribe un titulo" >
-                            <div>@error('title') <span class="text-danger">{{ $message }}</span>  @enderror</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Autor</label>
-                            <input type="text" class="form-control" wire:model="author" placeholder="Escribe un autor">
-                            <div>@error('author') <span class="text-danger">{{ $message }}</span>  @enderror</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Contenido</label>
-                            <textarea class="form-control" wire:model="content" rows="3"
-                            placeholder="Describe el contenido"></textarea>
-                            <div>@error('content') <span class="text-danger">{{ $message }}</span>  @enderror</div>
+    @include('admin.post.form-modal')
+    @include('admin.post.show-modal')
 
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="submit">Save changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
 
 
@@ -131,6 +98,7 @@
     <script type="module">
 
         document.addEventListener('livewire:init', () => {
+            // console.log(bootstrap);
 
             Livewire.on('delete', ({ postId }) => {
                 Swal.fire({
@@ -156,18 +124,46 @@
 
 
 
-            Livewire.on('view-modal', (flag) => {
+            const myModal = new bootstrap.Modal(document.getElementById('postModal'));
+            const show = new bootstrap.Modal(document.getElementById('showModal'));
+            Livewire.on('abrirModal', () => {
+                // Abrir el modal
+                myModal.show();
+            });
+            Livewire.on('showAbrirModal', () => {
+                // Abrir el modal
+                show.show();
+            });
 
-                if(flag){
-                    const myModal = new bootstrap.Modal('postModal');
-                    setTimeout(() => {
-                        myModal.show();
-                    }, 1000);
+
+            Livewire.on('cerrarModal', () => {
+                myModal.hide();
+                show.hide();
+            });
 
 
-                }else{
-                    $('#postModal').modal('hide');
-                }
+            Livewire.on('store-message', () => {
+                Swal.fire({
+                    toast: true,
+                    position: 'bottom-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    icon: 'success',
+                    title: 'Post creado Exitosamente',
+                });
+            });
+
+            Livewire.on('update-message', () => {
+                Swal.fire({
+                    toast: true,
+                    position: 'bottom-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    icon: 'success',
+                    title: 'Post actualizado Exitosamente',
+                });
             });
         })
 

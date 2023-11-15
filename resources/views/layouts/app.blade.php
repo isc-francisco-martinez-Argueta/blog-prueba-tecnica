@@ -14,7 +14,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss','resources/css/app.css', 'resources/js/app.js', ])
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -30,7 +31,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('post.index') }}">Post</a>
+                        </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -57,7 +62,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -76,5 +81,8 @@
             @yield('content')
         </main>
     </div>
+
+    @livewireScripts
+
 </body>
 </html>

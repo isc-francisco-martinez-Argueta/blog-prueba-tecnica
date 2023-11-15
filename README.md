@@ -18,13 +18,13 @@
   php artisan migrate:fresh --seed
 
 ## API CRUD 
-- para hacer las pruebas es necesario utilizar postman
-- para mayor seguridad en el punto .env esta las credenciales que se debe configurar en postman:
-en el .env encontrará :  API_KEY = el codigo en esta parte se puede utilizar un generador randon
+- para hacer las pruebas es necesario utilizar postman <br>
+- para mayor seguridad en el punto .env esta las credenciales que se debe configurar en postman:<br>
+en el .env encontrará :  API_KEY = el codigo en esta parte se puede utilizar un generador randon<br>
 
-en dado caso que la api se utilizara en difentes proyectos, se puede realizar una tabla para dar de alta los dominios y generarles una key randon para cada uno.
+en dado caso que la api se utilizara en difentes proyectos, se puede realizar una tabla para <br>dar de alta los dominios y generarles una key randon para cada uno.<br>
 
-En postman: en headers ingresara Blog-API-Key con el valor que tenga API_KEY de la configuración del env
+En postman: en headers ingresara Blog-API-Key con el valor que tenga API_KEY de la <br>configuración del env
 
 ## Recursos utilizados
     - php 8.1

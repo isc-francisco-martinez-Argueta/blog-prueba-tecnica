@@ -2,49 +2,79 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Api\BaseController;
 use App\Models\Post;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class ApiController extends Controller
+class ApiController extends BaseController
 {
     // Listar todos los posts
-    public function index()
+    public function index() : JsonResponse
     {
         $posts = Post::all();
-        return response()->json($posts);
+        return $this->sendResponse($posts, 'Posts retrieved successfully.');
+
     }
 
     // Obtener un post específico
-    public function show($id)
+    public function show($id) : JsonResponse
     {
         $post = Post::find($id);
 
-        if (!$post) {
-            return response()->json(['message' => 'Post no encontrado'], 404);
+        if (is_null($post)) {
+            return $this->sendError('Post not found.');
         }
 
-        return response()->json($post);
+        return $this->sendResponse($post, 'Post retrieved successfully.');
     }
 
     // Crear un nuevo post
-    public function store(Request $request)
+    public function store(Request $request) : JsonResponse
     {
+        $validatedData = Validator::make($request->all(),[
+            'user_id' => 'required',
+            'title' => 'required',
+            'author' => 'required',
+            'content' => 'required',
+        ]);
+
+        if($validatedData->fails()){
+            return $this->sendError('Validation Error.', $validatedData->errors());
+        }
+
         $post = Post::create($request->all());
-        return response()->json($post, 201);
+        return $this->sendResponse($post, 'Post created successfully.', 201);
+
     }
 
+
+
     // Actualizar un post existente
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) : JsonResponse
     {
         $post = Post::findOrFail($id);
 
-        if (!$post) {
-            return response()->json(['message' => 'Post no encontrado para actualizar'], 404);
+        if (is_null($post)) {
+            return $this->sendError('Post not found.');
         }
 
-        $post->update($request->all());
+        $validatedData = Validator::make($request->all(),[
+            'user_id' => 'required',
+            'title' => 'required',
+            'author' => 'required',
+            'content' => 'required',
+        ]);
 
-        return response()->json($post);
+        if($validatedData->fails()){
+            return $this->sendError('Validation Error.', $validatedData->errors());
+        }
+
+
+        $post->update($validatedData);
+        return $this->sendResponse($post, 'Post updated successfully.');
+
     }
 
     // Eliminar un post
@@ -52,12 +82,13 @@ class ApiController extends Controller
     {
         $post = Post::find($id);
 
-        if (!$post) {
-            return response()->json(['message' => 'Post no encontrado'], 404);
+        if (is_null($post)) {
+            return $this->sendError('Post not found.');
         }
 
         $post->delete();
 
-        return response()->json(['message' => 'Post eliminado con éxito']);
+        return $this->sendResponse([], 'Post deleted successfully.');
     }
+
 }

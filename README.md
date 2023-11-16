@@ -27,6 +27,22 @@ en dado caso que la api se utilizara en difentes proyectos, se puede realizar un
 En postman: en headers ingresara Blog-API-Key con el valor que tenga API_KEY de la <br>
 configuración del env
 
+## end points
+- Listar todos los post <br>
+http://blog-prueba-tecnica.test/api/posts/
+
+- Crear un nuevo post <br>
+http://blog-prueba-tecnica.test/api/posts
+
+- Obtener un post específico <br>
+http://blog-prueba-tecnica.test/api/posts/1
+
+- Actualizar un post existente <br>
+http://blog-prueba-tecnica.test/api/posts/1
+
+- Eliminar un post   br
+http://blog-prueba-tecnica.test/api/posts/1
+
 ## Recursos utilizados
     - php 8.1
     - laravel 10.10

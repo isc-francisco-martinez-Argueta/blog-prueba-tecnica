@@ -1,7 +1,7 @@
 ## Diagrama de flujo
 <p align="center"><img src="/public/Diagra.png" width="400" alt="Laravel Logo"></p>
 
-## Instalación del pryecto
+## Instalación del proyecto
 
 - composer install.
 - npm install
